@@ -1,0 +1,53 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "overrides": [
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint",
+      "only-warn",
+      "simple-import-sort",
+      "unused-imports"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+"rules": {
+  "react-hooks/exhaustive-deps": "off",
+  "react-hooks/rules-of-hooks": "warn",
+  "react/no-array-index-key": "off",
+  "@typescript-eslint/ban-ts-comment": "off",
+  "react/display-name": "off",
+  "no-case-declarations": "warn",
+  "no-unused-vars": [0],
+  "no-trailing-spaces": "warn",
+  "@typescript-eslint/no-unused-vars": [1],
+  "no-use-before-define": "off",
+  "@typescript-eslint/no-use-before-define": "off",
+  "no-nested-ternary": "off",
+  "no-unneeded-ternary": "off",
+  "multiline-ternary": "off",
+  "react/prop-types": "off",
+  "indent": ["warn", 2, { "SwitchCase": 1 }],
+  "simple-import-sort/imports": "warn",
+  "simple-import-sort/exports": "warn",
+  "import/export": ["off"],
+  "semi": [ "error", "never" ]
+  }
+}
