@@ -25,6 +25,7 @@
     "million": "^2.5.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-player": "^2.13.0",
     "react-router-dom": "^6.15.0",
     "socket.io-client": "^4.7.0",
     "vite-plugin-svgr": "^3.2.0"

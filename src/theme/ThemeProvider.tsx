@@ -17,7 +17,7 @@ function ThemeProvider({ children }: IThemeProvider) {
           colorText: 'var(--text-color)',
           colorTextPlaceholder: 'var(--text-color-opaque)',
           colorTextDisabled: 'var(--text-color-opaque)',
-          fontFamily: 'Poppins, sans-serif'
+          fontFamily: 'Raleway, sans-serif !important'
         }
       }}
       locale={pt_BR}
