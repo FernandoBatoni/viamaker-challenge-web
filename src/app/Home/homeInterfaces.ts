@@ -1,5 +1,6 @@
 type IVideos = {
   video: string
+  videoCode: string
 }
 
 export {

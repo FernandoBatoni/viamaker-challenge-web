@@ -1,7 +1,5 @@
-
-import { App, Col, Typography } from 'antd'
-import axios from 'axios'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { App, Col, Row, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 
 import VideoRepository from '../../repositories/VideoRepository'
@@ -9,24 +7,18 @@ import { IVideos } from './homeInterfaces'
 
 function Home() {
   const { message } = App.useApp()
-  const [videos, setVideos] = useState<IVideos>()
+  const [videos, setVideos] = useState<Array<IVideos>>([])
+  const [mainVideoIndex, setMainVideoIndex] = useState(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState('')
 
   const getVideos = async () => {
-    const source = axios.CancelToken.source()
-    setLoading(true)
-
     try {
-      const response = await VideoRepository.getAll({ cancelToken: source.token })
-
-      if (!response) throw new Error('Erro ao se comunicar com o servidor')
-
-      if (!response.data.data) throw new Error('Erro ao encontrar formulário de Sac')
-
+      const response = await VideoRepository.getAll()
+      if (!response || !response.data.data) {
+        throw new Error('Erro ao buscar vídeos')
+      }
       setVideos(response.data.data)
-      setLoading(false)
-
     } catch (err) {
       const messageError = err.message || 'Erro desconhecido'
       message.error(messageError)
@@ -35,24 +27,55 @@ function Home() {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getVideos()
-  }, [])
+  }, [mainVideoIndex])
+
+  const handleVideoClick = (index: number) => {
+    if (index !== mainVideoIndex) {
+      const newVideos = [...videos]
+      const tempMainVideo = newVideos[mainVideoIndex]
+
+      newVideos.splice(mainVideoIndex, 1, newVideos[index])
+      newVideos.splice(index, 1, tempMainVideo)
+
+      setVideos(newVideos)
+      setMainVideoIndex(index)
+    }
+  }
 
   return (
-    <>
-      <Col span={24} className='flex flex-col justify-center align-middle'>
-        <Typography.Title level={5}>
-          Meu vídeo favorito
-        </Typography.Title>
+    <div>
+      <Typography.Title level={4}>
+        Meu vídeo favorito
+      </Typography.Title>
+      <ReactPlayer width="100%" url={videos[mainVideoIndex]?.video} playing />
 
-        <ReactPlayer url='https://www.youtube.com/embed/Bqzb0gErek8?si=sJODH-2m-5sqYBL4' />
-      </Col>
-
-      <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-
-      </Col>
-    </>
+      <Typography.Title level={5} className='mt-4'>
+        Outros vídeos que eu gosto
+      </Typography.Title>
+      <Row gutter={16} style={{ margin: '16px 0' }}>
+        {videos.map((video, index) => (
+          index !== mainVideoIndex && (
+            <Col
+              key={video.videoCode}
+              xxl={6}
+              xl={6}
+              lg={6}
+              md={12}
+              sm={24}
+              xs={24}
+              style={{
+                cursor: 'pointer',
+                marginBottom: '16px',
+              }}
+            >
+              <ReactPlayer width="100%" url={video.video} onStart={() => handleVideoClick(index)} />
+            </Col>
+          )
+        ))}
+      </Row>
+    </div>
   )
 }
 
