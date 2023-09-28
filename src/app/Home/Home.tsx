@@ -15,9 +15,10 @@ function Home() {
   const getVideos = async () => {
     try {
       const response = await VideoRepository.getAll()
-      if (!response || !response.data.data) {
-        throw new Error('Erro ao buscar vídeos')
-      }
+
+      if (!response) throw new Error ('Erro ao se comunicar com o servidor')
+      if (!response.data.data) throw new Error('Erro ao buscar Videos')
+
       setVideos(response.data.data)
     } catch (err) {
       const messageError = err.message || 'Erro desconhecido'
@@ -54,7 +55,7 @@ function Home() {
       <Typography.Title level={5} className='mt-4'>
         Outros vídeos que eu gosto
       </Typography.Title>
-      <Row gutter={16} style={{ margin: '16px 0' }}>
+      <Row gutter={16} className='m-4'>
         {videos.map((video, index) => (
           index !== mainVideoIndex && (
             <Col

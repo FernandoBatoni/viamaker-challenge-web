@@ -94,7 +94,7 @@ function BaseLayout({ children, routeTitle }: IBaseLayoutProps) {
             className='layout__content'
           >
 
-            <Row justify='center' align='middle'>
+            <Row justify='center' align='middle' className='flex-col'>
               <Typography.Title level={3}>
                 {routeTitle}
               </Typography.Title>
