@@ -49,5 +49,5 @@
   "simple-import-sort/exports": "warn",
   "import/export": ["off"],
   "semi": [ "error", "never" ]
-  }
+}
 }

@@ -1,9 +1,13 @@
 import React from 'react'
 
-function App() {
+import RouterIndex from './router/RouterIndex'
+import ThemeProvider from './theme/ThemeProvider'
 
+function App() {
   return (
-    <p>Teste</p>
+    <ThemeProvider>
+      <RouterIndex />
+    </ThemeProvider>
   )
 }
 
