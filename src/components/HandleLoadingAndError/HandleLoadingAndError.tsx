@@ -1,16 +1,24 @@
-import { Result, Skeleton } from 'antd'
+import { Col, Result, Row, Skeleton } from 'antd'
 import React from 'react'
 
 interface IHandleLoadingAndError {
   children?: React.ReactNode
   loading: boolean
   error?: string | boolean
-  arrayNumber?: number
+  videoSkeleton?: boolean
+  skeletonNumber?: number
+  xxl?: number
+  xl?: number
+  md?: number
+  sm?: number
+  xs?: number
 }
 
 function HandleLoadingAndError(
-  { arrayNumber, children, loading, error}: IHandleLoadingAndError
-) {
+  {
+    children, loading, error, videoSkeleton,
+    skeletonNumber, xxl, xl, md, sm, xs
+  }: IHandleLoadingAndError) {
   if (error) {
     return (
       <Result
@@ -23,11 +31,29 @@ function HandleLoadingAndError(
 
   if (loading) {
     return (
-      <div className='flex flex-wrap gap-3 flex-space-around'>
-        {Array(arrayNumber || 4).fill(' ').map((_, idx) =>
-          <Skeleton.Button key={idx} active className='handle-load-error' />
+      <Row gutter={[ 15,15 ]} className=''>
+        {videoSkeleton &&
+          <Col span={24}>
+            <Skeleton.Button active className='handle-load-error__video-skeleton' />
+          </Col>
+        }
+        {Array(skeletonNumber ?? 4).fill(' ').map((_, idx) =>
+          <Col
+            xxl={xxl ?? 6}
+            xl={xl ?? 6}
+            md={md ?? 12}
+            sm={sm ?? 24}
+            xs={xs ?? 24}
+            key={idx}
+          >
+            <Skeleton.Button
+              key={idx}
+              active
+              className='handle-load-error'
+            />
+          </Col>
         )}
-      </div>
+      </Row>
     )
   }
 

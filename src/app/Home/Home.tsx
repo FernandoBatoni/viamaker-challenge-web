@@ -22,6 +22,7 @@ function Home() {
       if (!response.data.data) throw new Error('Erro ao buscar Videos')
 
       setVideos(response.data.data)
+      setLoading(false)
     } catch (err) {
       const messageError = err.message || 'Erro desconhecido'
       message.error(messageError)
@@ -48,7 +49,7 @@ function Home() {
   }
 
   return (
-    <HandleLoadingAndError loading={loading} error={error} arrayNumber={3}>
+    <HandleLoadingAndError loading={loading} error={error} videoSkeleton>
       <Typography.Title level={4}>
         Meu vídeo favorito
       </Typography.Title>
@@ -73,7 +74,11 @@ function Home() {
                 marginBottom: '16px',
               }}
             >
-              <ReactPlayer width="100%" url={video.video} onStart={() => handleVideoClick(index)} />
+              <ReactPlayer
+                width="100%"
+                url={video.video}
+                onStart={() => handleVideoClick(index)}
+              />
             </Col>
           )
         ))}

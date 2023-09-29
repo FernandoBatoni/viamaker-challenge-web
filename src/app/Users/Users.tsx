@@ -68,7 +68,15 @@ function Users() {
       </Col>
 
       <Col span={24}>
-        <HandleLoadingAndError loading={loading} error={error} arrayNumber={5}>
+        <HandleLoadingAndError
+          loading={loading}
+          error={error}
+          xxl={24}
+          xl={24}
+          md={24}
+          sm={24}
+          xs={24}
+        >
           {users.map((user) => (
             <Col span={24} key={user.name}>
               <Card className='user__card'>
