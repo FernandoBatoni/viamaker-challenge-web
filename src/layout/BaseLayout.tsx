@@ -89,19 +89,16 @@ function BaseLayout({ children, routeTitle }: IBaseLayoutProps) {
           handleDrawer={handleDrawer}
         />
 
-        <Content id='infinite-scroller'>
-          <main
-            className='layout__content'
-          >
+        <Content id='infinite-scroller '>
+          <Row justify='center' align='middle' className='flex-col w-full mt-4'>
+            <Typography.Title level={3}>
+              {routeTitle}
+            </Typography.Title>
 
-            <Row justify='center' align='middle' className='flex-col'>
-              <Typography.Title level={3}>
-                {routeTitle}
-              </Typography.Title>
-
+            <main className='layout__content'>
               {children}
-            </Row>
-          </main>
+            </main>
+          </Row>
         </Content>
       </section>
     </Layout>

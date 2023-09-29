@@ -1,19 +1,15 @@
+import { EyeOutlined } from "@ant-design/icons"
 import { ColumnType } from "antd/es/table"
+import React from 'react'
 
 import { format } from "../../utils/format"
 import { IProduct } from "./productsInterfaces"
 
-// interface ITicketColumns {
-//   onUpdate: (ticketId: string) => void
-// }
+interface IProductColumn {
+  onViewProduct: (index: number) => void
+}
 
-// const updateOrBlock = ({ userDepartment, onUpdate }: ITicketColumns) => ({
-//   title: 'Prioridade (TI)',
-//   dataIndex: 'itPriority',
-//   width: 140,
-// })
-
-const productColumns = () => {
+const productColumns = (actions: IProductColumn) => {
   const columns: Array<ColumnType<IProduct>> = [
     {
       title: 'Nome do Produto',
@@ -28,7 +24,13 @@ const productColumns = () => {
         return format.formatBRL(value)
       }
     },
-    // updateOrBlock({ userDepartment, onUpdate }),
+    {
+      title: 'Ações',
+      width: 10,
+      render: (_, row: IProduct, index: number) => (
+        <EyeOutlined onClick={() => actions.onViewProduct(index)} color="var(--primary-color)" />
+      )
+    }
   ]
 
   return columns

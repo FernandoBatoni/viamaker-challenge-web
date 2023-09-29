@@ -25,7 +25,7 @@ function Navbar ({ menu, visible, handleDrawer }: INavbar) {
       </section>
 
       <Drawer
-        title='Menu'
+        title='Desafio Viamaker'
         placement='left'
         onClose={() => handleDrawer(false)}
         open={visible}
