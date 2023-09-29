@@ -83,4 +83,55 @@ body {
   .ant-divider-horizontal {
     margin: 0.5rem 0;
   }
+
+  .ant-btn {
+    padding: 0 30px;
+    font-weight: 400;
+  }
+
+  .ant-float-btn-icon {
+    color: var(--secondary-color);
+  }
+
+  .ant-btn-dashed {
+    border-color: inherit;
+  }
+
+  .ant-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    color: inherit;
+  }
+
+  .ant-btn:focus {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    color: inherit;
+  }
+  
+  .ant-btn-primary {
+    padding: 0 30px;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: none;
+    color: var(--button-text-color);
+
+    &:hover{
+      opacity: 0.9;
+      transition: 0.3s;
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--button-text-color);
+    }
+
+    &:focus{
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--button-text-color);
+    }
+  }
+
+  .ant-btn-link:hover, .ant-btn-link:focus{
+    border-color: transparent;
+  }
 }
