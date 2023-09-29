@@ -25,8 +25,16 @@ Refer to the .env.example for use, and create a .env file on the root of the pro
 It should look something like this:
 
 ```env
-REACT_APP_ENV=development
+REACT_APP_ENV=development (anything but I recommend development)
 REACT_APP_SERVER=http://YOUR.IP.ADDRESS:PORT
 ```
 
 For the IP, run ipconfig on Windows or ifconfig in Linux, and paste your ip here or from a collegue running the back-end on their machine, and the port set on the back-end
+
+## 🧑‍💻 Technologies
+
+Technologies used include:
+  Vite (Framework);
+  React + Typescript;
+  Tailwind for classes, with PostCSS and Less;
+  Bun / Yarn for package managment
