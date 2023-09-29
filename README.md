@@ -34,7 +34,8 @@ For the IP, run ipconfig on Windows or ifconfig in Linux, and paste your ip here
 ## 🧑‍💻 Technologies
 
 Technologies used include:
-  Vite (Framework);
-  React + Typescript;
-  Tailwind for classes, with PostCSS and Less;
-  Bun / Yarn for package managment
+
+- Vite (Framework)
+- React + Typescript
+- Tailwind for classes, with PostCSS and Less
+- Bun / Yarn for package management
