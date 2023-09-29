@@ -1,8 +1,8 @@
 import { App, Col, Row, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import ReactPlayer from 'react-player'
 
 import HandleLoadingAndError from '../../components/HandleLoadingAndError/HandleLoadingAndError'
+import YoutubeVideoPlayer from '../../components/YoutubeVideoPlayer/YoutubeVideoPlayer'
 import VideoRepository from '../../repositories/VideoRepository'
 import { IVideos } from './homeInterfaces'
 
@@ -31,10 +31,6 @@ function Home() {
     }
   }
 
-  useEffect(() => {
-    getVideos()
-  }, [mainVideoIndex])
-
   const handleVideoClick = (index: number) => {
     if (index !== mainVideoIndex) {
       const newVideos = [...videos]
@@ -45,15 +41,20 @@ function Home() {
 
       setVideos(newVideos)
       setMainVideoIndex(index)
+      console.log(index)
     }
   }
+
+  useEffect(() => {
+    getVideos()
+  }, [mainVideoIndex])
 
   return (
     <HandleLoadingAndError loading={loading} error={error} videoSkeleton>
       <Typography.Title level={4}>
         Meu vídeo favorito
       </Typography.Title>
-      <ReactPlayer width="100%" url={videos[mainVideoIndex]?.video} playing />
+      <YoutubeVideoPlayer embedId={videos[mainVideoIndex]?.video} autoplay={true} />
 
       <Typography.Title level={5} className='mt-4'>
         Outros vídeos que eu gosto
@@ -74,10 +75,12 @@ function Home() {
                 marginBottom: '16px',
               }}
             >
-              <ReactPlayer
-                width="100%"
-                url={video.video}
-                onStart={() => handleVideoClick(index)}
+              <YoutubeVideoPlayer
+                embedId={video.video}
+                onClick={() => {
+                  handleVideoClick(index)
+                  console.log('ENTERS')
+                }}
               />
             </Col>
           )

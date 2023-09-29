@@ -73,7 +73,7 @@ function UserModal({ open, onUserChange, editUser, onCancel }: IUserModal) {
               help={errors.name && (errors.name)}
               validateStatus={errors.name && 'error'}
             >
-              <Input placeholder='Exemplo: Nome Sobrenome' />
+              <Input placeholder='Exemplo: Nome Sobrenome' maxLength={50} />
             </Form.Item>
           </Col>
 
