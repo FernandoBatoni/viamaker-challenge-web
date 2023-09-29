@@ -54,7 +54,7 @@ export interface IRepository {
   path: string
 }
 
-export class Repository<Type, CreateType, GetType, UpdateType> {
+export class Repository<Type> {
   protected api: AxiosInstance
   protected path: string
 
@@ -75,27 +75,27 @@ export class Repository<Type, CreateType, GetType, UpdateType> {
     }
   }
 
-  async getAll<T = GetType | Type> (config?: AxiosRequestConfig): Promise<IResponseBase<T>> {
-    return this.handle<T>(() =>
+  async getAll<T = Type> (config?: AxiosRequestConfig): Promise<IResponseBase<Array<T>>> {
+    return this.handle<Array<T>>(() =>
       this.api.get(this.path, config)
     )
   }
 
-  async find<T = GetType | Type> (id: string, config?: AxiosRequestConfig): Promise<IResponseBase<{ [key: string]: T }>> {
+  async find<T = Type> (id: string, config?: AxiosRequestConfig): Promise<IResponseBase<{ [key: string]: T }>> {
     return this.handle<{ [key: string]: T }>(() =>
       this.api.get(`${this.path}/${id}`, config)
     )
   }
 
-  async create<T = CreateType | Type> (data: T, config?: AxiosRequestConfig): Promise<IResponseBase<T>> {
+  async create<T = Type> (data: T, config?: AxiosRequestConfig): Promise<IResponseBase<T>> {
     return this.handle(() =>
       this.api.post(`${this.path}`, data, config)
     )
   }
 
-  async update<T = UpdateType | CreateType | Type> (id: string, data: T, config?: AxiosRequestConfig): Promise<IResponseBase<UpdateType>> {
+  async update<T> (id: string, data: T, config?: AxiosRequestConfig): Promise<IResponseBase<T>> {
     return this.handle(() =>
-      this.api.patch(`${this.path}/update/${id}`, data, config)
+      this.api.put(`${this.path}/${id}`, data, config)
     )
   }
 }

@@ -2,6 +2,7 @@ import { App, Col, Row, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 
+import HandleLoadingAndError from '../../components/HandleLoadingAndError/HandleLoadingAndError'
 import VideoRepository from '../../repositories/VideoRepository'
 import { IVideos } from './homeInterfaces'
 
@@ -13,6 +14,7 @@ function Home() {
   const [error, setError] = useState('')
 
   const getVideos = async () => {
+    setLoading(true)
     try {
       const response = await VideoRepository.getAll()
 
@@ -46,7 +48,7 @@ function Home() {
   }
 
   return (
-    <div>
+    <HandleLoadingAndError loading={loading} error={error} arrayNumber={3}>
       <Typography.Title level={4}>
         Meu vídeo favorito
       </Typography.Title>
@@ -76,7 +78,7 @@ function Home() {
           )
         ))}
       </Row>
-    </div>
+    </HandleLoadingAndError>
   )
 }
 

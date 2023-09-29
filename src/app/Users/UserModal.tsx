@@ -8,17 +8,18 @@ import { IUser } from './userInterfaces'
 
 type IUserModal = {
   open: boolean
-  setOpen: (value: boolean) => void
   onUserChange: () => Promise<void>
-  editUser?: IUser
+  editUser: IUser | null
+  onCancel: () => void
 }
 
-function UserModal({ open, setOpen, onUserChange, editUser }: IUserModal) {
+function UserModal({ open, onUserChange, editUser, onCancel }: IUserModal) {
   const [userForm] = Form.useForm<IUser>()
   const { message } = App.useApp()
   const {
     validateAllResponse, loading, errors, setLoading
   } = useValidation<IErrorForm<IUser>>()
+
   const editText = editUser ? 'Alterar' : 'Adicionar'
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function UserModal({ open, setOpen, onUserChange, editUser }: IUserModal) {
       setLoading(false)
       onUserChange()
       userForm.resetFields()
-      setOpen(false)
+      onCancel()
     } catch (err) {
       if (err.errors && err.errors?.invalid) message.warning({
         content: validateAllResponse(err.errors.invalid, err.message)
@@ -61,7 +62,7 @@ function UserModal({ open, setOpen, onUserChange, editUser }: IUserModal) {
       open={open}
       footer={null}
       title={`${editText} usuário`}
-      onCancel={() => setOpen(false)}
+      onCancel={onCancel}
     >
       <Form layout='vertical' onFinish={finishUserForm} form={userForm}>
         <Row gutter={15}>
@@ -93,7 +94,7 @@ function UserModal({ open, setOpen, onUserChange, editUser }: IUserModal) {
         </Row>
 
         <Row className='responsive-button-group' justify='center'>
-          <Button onClick={() => setOpen(false)}>
+          <Button onClick={onCancel}>
             Cancelar
           </Button>
 
