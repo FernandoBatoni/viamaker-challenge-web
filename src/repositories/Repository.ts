@@ -89,7 +89,7 @@ export class Repository<Type, CreateType, GetType, UpdateType> {
 
   async create<T = CreateType | Type> (data: T, config?: AxiosRequestConfig): Promise<IResponseBase<T>> {
     return this.handle(() =>
-      this.api.post(`${this.path}/create`, data, config)
+      this.api.post(`${this.path}`, data, config)
     )
   }
 

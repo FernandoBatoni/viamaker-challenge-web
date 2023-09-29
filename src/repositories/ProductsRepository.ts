@@ -5,4 +5,4 @@ import { Repository } from "./Repository"
 
 class ProductsRepository extends Repository<IProduct[], IProduct, IProduct[], IProduct> {}
 
-export default new ProductsRepository({ path: '/products', api })
+export default new ProductsRepository({ path: '/produtos', api })

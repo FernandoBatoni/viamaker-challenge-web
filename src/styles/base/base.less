@@ -10,7 +10,6 @@
 #root {
   font-family: 'Raleway', sans-serif !important;
   height: 100%;
-  color-scheme: light;
 }
 
 &::-webkit-scrollbar{
@@ -46,11 +45,6 @@
 body {
   height: 100%;
   background-color: var(--background-color);
-  transition: all 0.4 ease;
-
-  & svg {
-    color: hsl(var(--primary));
-  }
 
   h1, h2, h3, h4, h5 {
     color: var(--primary-color) !important;
@@ -83,7 +77,6 @@ body {
   .ant-divider-horizontal {
     margin: 0.5rem 0;
   }
-
   .ant-btn {
     padding: 0 30px;
     font-weight: 400;
@@ -117,7 +110,7 @@ body {
     color: var(--button-text-color);
 
     &:hover{
-      opacity: 0.9;
+      opacity: 0.7;
       transition: 0.3s;
       background: var(--primary-color);
       border-color: var(--primary-color);
@@ -133,5 +126,14 @@ body {
 
   .ant-btn-link:hover, .ant-btn-link:focus{
     border-color: transparent;
+  }
+
+  .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active{
+    opacity: 0.3;
+    transition: 0.3s;
+  }
+
+  .ant-btn-icon-only{
+    padding: 0;
   }
 }

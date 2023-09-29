@@ -1,0 +1,25 @@
+.user {
+  &__card {
+    & .ant-card-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__action-section {
+    display: flex;
+    gap: 1rem;
+
+    & svg {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+  }
+}
