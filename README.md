@@ -15,3 +15,18 @@ All commands are run from the root of the project, from a terminal:
 | `bun dev`             | Starts local dev server at `localhost:300`      |
 | `bun build`           | Build your production site to `./build/`          |
 | `bun preview`         | Preview your build locally, before deploying     |
+
+## 💻 Enviroment
+
+In the e-mail I sent, there will be the .env variables needed to run the front-end and back-end,
+and they are not built in for security reasons.
+
+Refer to the .env.example for use, and create a .env file on the root of the project.
+It should look something like this:
+
+```env
+REACT_APP_ENV=development
+REACT_APP_SERVER=http://YOUR.IP.ADDRESS:PORT
+```
+
+For the IP, run ipconfig on Windows or ifconfig in Linux, and paste your ip here or from a collegue running the back-end on their machine, and the port set on the back-end
